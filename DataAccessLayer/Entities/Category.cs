@@ -22,5 +22,7 @@ namespace DataAccessLayer.Entities
 
         [Display(Name = "Alt Kategoriler")]
         public ICollection<Category> SubCategories { get; set;}
+        public ICollection<ProductCategory> ProductCategories { get; set; }
+
     }
 }

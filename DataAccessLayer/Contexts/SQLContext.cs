@@ -10,6 +10,8 @@ namespace DataAccessLayer.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasOne(a => a.ParentCategory).WithMany(a => a.SubCategories).HasForeignKey(a => a.ParentID);
+            modelBuilder.Entity<Product>().HasOne(a=>a.Brand).WithMany(a=>a.Products).OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<ProductCategory>().HasKey(a=> new {a.ProductID, a.CategoryID}); //ProductCategory Tablosunun İki Adet Primary Key'i Bulunuyor.
 
             modelBuilder.Entity<Admin>().HasData(new Admin
             {
@@ -27,6 +29,9 @@ namespace DataAccessLayer.Contexts
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Slide> Slide { get; set; }
         public DbSet<Brand> Brand { get; set; }
+        public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<ProductPicture> ProductPicture { get; set; }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
     }
 }

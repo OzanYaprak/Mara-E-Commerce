@@ -36,7 +36,10 @@ namespace DataAccessLayer.Entities
         public int ProductStock { get; set; }
 
         [Display(Name = "Marka")]
-        public int BrandID { get; set; }
+        public int? BrandID { get; set; }
         public Brand Brand { get; set; }
+
+        public ICollection<ProductPicture> ProductPictures { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }
