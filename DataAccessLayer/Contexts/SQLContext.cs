@@ -25,5 +25,8 @@ namespace DataAccessLayer.Contexts
         }
 
         public DbSet<Admin> Admin { get; set; }
+        public DbSet<Slide> Slide { get; set; }
+        public DbSet<Brand> Brand { get; set; }
+        public DbSet<Category> Category { get; set; }
     }
 }
