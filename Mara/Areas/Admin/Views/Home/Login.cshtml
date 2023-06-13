@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Admin
+@{
     Layout = null;
 }
 
@@ -58,15 +59,16 @@
                         <div class="line"></div>
                         </div>*@
                         <div class="form-body mt-4">
-                            <form class="row g-3">
+                            <form asp-controller="Home" asp-action="Login" method="post" class="row g-3">
+                                <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
                                 <div class="col-12">
-                                    <label for="inputEmailAddress" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com">
+                                    <label for="inputUserName" class="form-label">Email</label>
+                                    <input asp-for="AdminUsername" type="text" class="form-control" id="inputUserName">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputChoosePassword" class="form-label">Şifre</label>
                                     <div class="input-group" id="show_hide_password">
-                                        <input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Şifrenizi Giriniz">
+                                        <input asp-for="AdminPassword" type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Şifrenizi Giriniz">
                                         <a href="javascript:;" class="input-group-text bg-transparent">
                                             <i class="bi bi-eye-slash-fill"></i>
                                         </a>
@@ -74,7 +76,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                        <input name="RememberMe" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Beni Hatırla</label>
                                     </div>
                                 </div>
@@ -93,6 +95,7 @@
                                 </p>
                                 </div>
                                 </div>*@
+                                @Html.AntiForgeryToken()
                             </form>
                         </div>
                     </div>

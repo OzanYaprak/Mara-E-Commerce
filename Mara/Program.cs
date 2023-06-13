@@ -1,5 +1,6 @@
 using BusinessLayer.Repositories;
 using DataAccessLayer.Contexts;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +10,18 @@ builder.Services.AddControllersWithViews();
 
 
 //Database connection
-builder.Services.AddDbContext<SQLContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("sqlconnection")));
+builder.Services.AddDbContext<SQLContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlconnection")));
 
-builder.Services.AddScoped(typeof(IRepository<>),typeof(SQLRepository<>)); // IRepository yazýlan yerleri, SQLRepository ile deðiþtir.
+builder.Services.AddScoped(typeof(IRepository<>), typeof(SQLRepository<>)); // IRepository yazýlan yerleri, SQLRepository ile deðiþtir.
+
+//Cookie Builder
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = "/admin/giris";
+    options.LogoutPath = "/admin/cikis";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+});
+
 
 var app = builder.Build();
 
@@ -24,7 +34,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthorization(); //Kimlik Doðrulama
+
+app.UseAuthentication(); //Kimlik Yetkilendirme
 
 app.MapControllerRoute(
     name: "default",
