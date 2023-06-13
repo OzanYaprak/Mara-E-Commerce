@@ -1,3 +1,4 @@
+using BusinessLayer.Repositories;
 using DataAccessLayer.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ builder.Services.AddControllersWithViews();
 //Database connection
 builder.Services.AddDbContext<SQLContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("sqlconnection")));
 
+builder.Services.AddScoped(typeof(IRepository<>),typeof(SQLRepository<>)); // IRepository yazýlan yerleri, SQLRepository ile deðiþtir.
 
 var app = builder.Build();
 

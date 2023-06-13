@@ -41,21 +41,21 @@
                         <h4 class="fw-bold">Yönetim Giriş</h4>
                         <p class="mb-0">Hesabınıza giriş yapmak için lütfen aşağıdaki bilgileri giriniz</p>
                         @*<div class="row g-3 my-4">
-                            <div class="col-12 col-lg-12">
-                                <button class="btn btn-light py-2 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                                    <img src="/admin/images/icons/google-2.png" width="18" class="me-2" alt="">Log In with Google
-                                </button>
-                            </div>
-                            <div class="col col-lg-12">
-                                <button class="btn btn-light py-2 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                                    <img src="/admin/images/icons/apple-logo.png" width="18" class="me-2" alt="">Log In with Apple
-                                </button>
-                            </div>
+                        <div class="col-12 col-lg-12">
+                        <button class="btn btn-light py-2 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
+                        <img src="/admin/images/icons/google-2.png" width="18" class="me-2" alt="">Log In with Google
+                        </button>
+                        </div>
+                        <div class="col col-lg-12">
+                        <button class="btn btn-light py-2 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
+                        <img src="/admin/images/icons/apple-logo.png" width="18" class="me-2" alt="">Log In with Apple
+                        </button>
+                        </div>
                         </div>
                         <div class="separator">
-                            <div class="line"></div>
-                            <p class="mb-0 fw-bold">OR</p>
-                            <div class="line"></div>
+                        <div class="line"></div>
+                        <p class="mb-0 fw-bold">OR</p>
+                        <div class="line"></div>
                         </div>*@
                         <div class="form-body mt-4">
                             <form class="row g-3">
@@ -87,11 +87,11 @@
                                     </div>
                                 </div>
                                 @*<div class="col-12">
-                                    <div class="text-start">
-                                        <p class="mb-0">
-                                            Don't have an account yet? <a href="auth-boxed-register.html">Sign up here</a>
-                                        </p>
-                                    </div>
+                                <div class="text-start">
+                                <p class="mb-0">
+                                Don't have an account yet? <a href="auth-boxed-register.html">Sign up here</a>
+                                </p>
+                                </div>
                                 </div>*@
                             </form>
                         </div>
@@ -123,7 +123,8 @@
                     $('#show_hide_password input').attr('type', 'password');
                     $('#show_hide_password i').addClass("bi-eye-slash-fill");
                     $('#show_hide_password i').removeClass("bi-eye-fill");
-                } else if ($('#show_hide_password input').attr("type") == "password") {
+                }
+                else if ($('#show_hide_password input').attr("type") == "password") {
                     $('#show_hide_password input').attr('type', 'text');
                     $('#show_hide_password i').removeClass("bi-eye-slash-fill");
                     $('#show_hide_password i').addClass("bi-eye-fill");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,41 +10,51 @@ namespace BusinessLayer.Repositories
 {
     public class SQLRepository<T> : IRepository<T> where T : class // where T : class yani T class olmak zorunda
     {
+        private readonly SQLContext context;
 
+        public SQLRepository(SQLContext _context)
+        {
+            context = _context;
+        }
 
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
+            context.SaveChanges();
         }
 
         public IQueryable<T> FindAll(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return context.Set<T>().Where(expression);
         }
 
         public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Set<T>();
         }
 
         public T GetBy(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return context.Set<T>().FirstOrDefault(expression);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            context.Update(entity);
+            context.SaveChanges();
         }
 
-        public void Update(T entity, params Expression<Func<T, object>>[] expression)
+        public void Update(T entity, params Expression<Func<T, object>>[] expressions)
         {
-            throw new NotImplementedException();
+            if (expressions.Any()) foreach (Expression<Func<T, object>> expression in expressions) context.Entry(entity).Property(expression).IsModified=true;
+            else context.Update(entity);
+            context.SaveChanges();
         }
     }
 }
