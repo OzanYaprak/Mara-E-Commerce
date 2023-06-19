@@ -21,7 +21,7 @@ namespace Mara.Areas.admin.Controllers
         [Route("MarkaYönetimi")]
         public IActionResult Index()
         {
-            var brands = _brandRepository.GetAll().OrderByDescending(a=>a.ID);
+            var brands = _brandRepository.GetAll().OrderBy(a=>a.ID);
 
             return View(brands);
         }
@@ -38,6 +38,14 @@ namespace Mara.Areas.admin.Controllers
         {
             _brandRepository.AddAsync(model);
             return RedirectToAction("Index");
+        }
+
+        [Route("MarkaGüncelle")]
+        public async Task<IActionResult> Update(int id)
+        {
+            var updateModel = await _brandRepository.GetByAsync(a => a.ID == id);
+
+            return View(updateModel);
         }
     }
 }
