@@ -6,20 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace Mara.Areas.admin.Controllers
 {
     [Area("admin"), Authorize]
-    public class ProductController : Controller
+    public class CategoryController : Controller
     {
-        private readonly IRepository<Product> _productRepository;
+        private readonly IRepository<Category> _categoryRepository;
 
-        public ProductController(IRepository<Product> productRepository)
+        public CategoryController(IRepository<Category> categoryRepository)
         {
-            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
 
 
 
-
-        [Route("ÜrünYönetimi")]
+        [Route("KategoriYönetimi")]
         public IActionResult Index()
         {
             return View();

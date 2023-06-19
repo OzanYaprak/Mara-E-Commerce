@@ -34,9 +34,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); //Kimlik Yetkilendirme
+
 app.UseAuthorization(); //Kimlik Doðrulama
 
-app.UseAuthentication(); //Kimlik Yetkilendirme
 
 app.MapControllerRoute(
     name: "default",

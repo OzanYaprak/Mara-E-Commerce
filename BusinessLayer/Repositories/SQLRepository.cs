@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,16 +18,16 @@ namespace BusinessLayer.Repositories
             context = _context;
         }
 
-        public void Add(T entity)
+        public async Task AddAsync(T entity)
         {
-            context.Add(entity);
-            context.SaveChanges();
+            await context.AddAsync(entity);
+            await context.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             context.Remove(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         public IQueryable<T> FindAll(Expression<Func<T, bool>> expression)
@@ -39,22 +40,22 @@ namespace BusinessLayer.Repositories
             return context.Set<T>();
         }
 
-        public T GetBy(Expression<Func<T, bool>> expression)
+        public async Task<T> GetByAsync(Expression<Func<T, bool>> expression)
         {
-            return context.Set<T>().FirstOrDefault(expression);
+            return await context.Set<T>().FirstOrDefaultAsync(expression);
         }
 
-        public void Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             context.Update(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void Update(T entity, params Expression<Func<T, object>>[] expressions)
+        public async Task UpdateAsync(T entity, params Expression<Func<T, object>>[] expressions)
         {
-            if (expressions.Any()) foreach (Expression<Func<T, object>> expression in expressions) context.Entry(entity).Property(expression).IsModified=true;
+            if (expressions.Any()) foreach (Expression<Func<T, object>> expression in expressions) context.Entry(entity).Property(expression).IsModified = true;
             else context.Update(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
 }

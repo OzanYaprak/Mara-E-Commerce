@@ -11,12 +11,11 @@ namespace BusinessLayer.Repositories
     {
         public IQueryable<T> GetAll();
         public IQueryable<T> FindAll(Expression<Func<T, bool>> expression);
-        public T GetBy(Expression<Func<T,bool>> expression);
-        public void Add(T entity);
-        public void Update(T entity);
-        public void Update(T entity, params Expression<Func<T,object>>[] expressions); //Object T nin objesi oluyor yani T Product, object ise ProductName olabilir.
-        public void Delete(T entity);
+        Task<T> GetByAsync(Expression<Func<T,bool>> expression);
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task UpdateAsync(T entity, params Expression<Func<T,object>>[] expressions); //Object T nin objesi oluyor yani T Product, object ise ProductName olabilir.
+        Task DeleteAsync(T entity);
 
     }
 }
-
