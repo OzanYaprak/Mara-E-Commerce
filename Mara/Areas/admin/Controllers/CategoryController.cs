@@ -8,7 +8,7 @@ namespace Mara.Areas.admin.Controllers
     [Area("admin"), Authorize]
     public class CategoryController : Controller
     {
-        private readonly IRepository<Category> _categoryRepository;
+        IRepository<Category> _categoryRepository;
 
         public CategoryController(IRepository<Category> categoryRepository)
         {

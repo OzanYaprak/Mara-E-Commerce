@@ -35,10 +35,10 @@
                                         <td>@brand.BrandName</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a asp-controller="Brand" asp-action="Update" asp-route-id="@brand.ID" class="btn btn-warning">
+                                                <a asp-controller="Brand" asp-action="Update" asp-route-id="@brand.ID" title="Markayı Güncelle" class="btn btn-warning">
                                                     <span class="material-symbols-outlined me-0">refresh</span>
                                                 </a>
-                                                <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.ID" class="btn btn-danger">
+                                                <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.ID" title="Markayı Sil" class="btn btn-danger">
                                                     <span class="material-symbols-outlined me-0">delete</span>
                                                 </a>
                                             </div>
@@ -53,6 +53,5 @@
             </div>
         </div>
     </div>
-
 </main>
 <!--end main content-->

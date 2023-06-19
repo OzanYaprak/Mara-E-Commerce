@@ -8,7 +8,7 @@ namespace Mara.Areas.admin.Controllers
     [Area("admin"), Authorize]
     public class BrandController : Controller
     {
-        private readonly IRepository<Brand> _brandRepository;
+        IRepository<Brand> _brandRepository;
 
         public BrandController(IRepository<Brand> brandRepository)
         {
@@ -21,10 +21,13 @@ namespace Mara.Areas.admin.Controllers
         [Route("MarkaYönetimi")]
         public IActionResult Index()
         {
-            var brands = _brandRepository.GetAll().OrderBy(a=>a.ID);
+            var brands = _brandRepository.GetAll().OrderBy(a => a.ID);
 
             return View(brands);
         }
+
+
+
 
         [Route("YeniMarkaEkle")]
         public IActionResult Create()
@@ -34,18 +37,44 @@ namespace Mara.Areas.admin.Controllers
 
         [HttpPost]
         [Route("YeniMarkaEkle")]
-        public IActionResult Create(Brand model)
+        public async Task<IActionResult> Create(Brand model)
         {
-            _brandRepository.AddAsync(model);
+            await _brandRepository.AddAsync(model);
             return RedirectToAction("Index");
         }
 
+
+
+
+        [HttpGet]
         [Route("MarkaGüncelle")]
         public async Task<IActionResult> Update(int id)
         {
-            var updateModel = await _brandRepository.GetByAsync(a => a.ID == id);
+            var getBrandToUpdate = await _brandRepository.GetByAsync(a => a.ID == id);
 
-            return View(updateModel);
+            return View(getBrandToUpdate);
+        }
+
+        [HttpPost]
+        [Route("MarkaGüncelle")]
+        public async Task<IActionResult> Update(Brand model)
+        {
+            await _brandRepository.UpdateAsync(model);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+        [Route("MarkaSil")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var brand = await _brandRepository.GetByAsync(x => x.ID == id);
+
+            await _brandRepository.DeleteAsync(brand);
+
+            return RedirectToAction("Index");
         }
     }
 }

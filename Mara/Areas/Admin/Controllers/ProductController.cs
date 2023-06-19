@@ -8,7 +8,7 @@ namespace Mara.Areas.admin.Controllers
     [Area("admin"), Authorize]
     public class ProductController : Controller
     {
-        private readonly IRepository<Product> _productRepository;
+        IRepository<Product> _productRepository;
 
         public ProductController(IRepository<Product> productRepository)
         {

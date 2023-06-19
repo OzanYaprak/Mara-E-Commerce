@@ -12,7 +12,7 @@ namespace Kikea.Areas.admin.Controllers
     [Area("admin"),Authorize]
     public class HomeController : Controller
     {
-        private readonly IRepository<Admin> _adminRepository;
+        IRepository<Admin> _adminRepository;
 
         public HomeController(IRepository<Admin> adminRepository)
         {
