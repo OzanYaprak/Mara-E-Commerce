@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Mara.Areas.admin.Controllers
 {
+    
     [Area("admin"), Authorize]
     public class BrandController : Controller
     {
