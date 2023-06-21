@@ -15,9 +15,9 @@
                     <div class="mb-3">
                         <label asp-for="ParentID" class="form-label fw-bold"></label>
                         <select asp-for="ParentID" asp-items="@ViewBag.Categories" class="form-control">
-                            <option value="0">Üst Kategori Seçiniz</option>
+                            <option value="">Üst Kategori Seçiniz</option>
                         </select>
-                    </div>
+                    </div> 
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Ekle</button>

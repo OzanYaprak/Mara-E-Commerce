@@ -5,7 +5,7 @@
 
 
 <!doctype html>
-<html lang="tr" data-bs-theme="@(DateTime.UtcNow.Hour > 19 ? "dark" : "light1")">
+<html lang="tr" data-bs-theme="@(DateTime.Now.Hour > 20 || DateTime.Now.Hour < 6 ? "dark" : "light1")">
 
 <head>
     <meta charset="utf-8">
