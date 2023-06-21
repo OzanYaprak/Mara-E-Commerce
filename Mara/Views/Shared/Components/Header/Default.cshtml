@@ -1,4 +1,9 @@
-﻿        <!-- Nav Popup -->
+﻿@model IEnumerable<Category>
+
+
+@*İLK SAYFA HEADER*@
+
+
 <div id="cd-nav" class="cd-nav">
     <div class="cd-navigation-wrapper">
         <div class="position-center-center">
@@ -9,12 +14,14 @@
                     <ul class="cd-primary-nav">
                         <li class="@(ViewBag.MenuIndex==0?"active":"")"> <a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
                         <li class="drop-menu">
-                            <a href="#" class="title collapsed" data-toggle="collapse" data-target="#down-1">Ürünler</a>
+                            <a href="#" class="title collapsed @(ViewBag.MenuIndex==3 || ViewBag.MenuIndex==4 ?"active":"")" data-toggle="collapse" data-target="#down-1">Ürünler</a>
                             <div class="collapse" id="down-1">
                                 <div class="well">
                                     <ul>
-                                        <li class="@(ViewBag.MenuIndex==3?"active":"")"> <a href="#">Erkek</a> </li>
-                                        <li class="@(ViewBag.MenuIndex==4?"active":"")"> <a href="#">Kadın</a> </li>
+                                        @foreach (Category category in Model.Where(x => x.ParentID == null))
+                                        {
+                                            <li><a href="#">@category.CategoryName</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>

@@ -1,4 +1,9 @@
-﻿        <!-- header -->
+﻿@model IEnumerable<Category>
+
+
+@*İKİNCİ SAYFA HEADER*@
+
+
 <header>
     <div class="sticky">
         <div class="container">
@@ -19,49 +24,25 @@
                             <a asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
 
-                        @*Kadın*@
-                        <li class="dropdown @(ViewBag.MenuIndex == 4 ? "active" : "")">
-                            <a href="#." class="dropdown-toggle" data-toggle="dropdown">Kadın</a>
-                            <ul class="dropdown-menu">
-                                <li> <a href="shop_01.html">Shop 01 </a> </li>
-                                <li> <a href="shop_02.html">Shop 02</a> </li>
-                                <li> <a href="shop_03.html">Shop 03 </a> </li>
-                                <li> <a href="shop_04.html">Shop 04 </a> </li>
-                                <li> <a href="product-detail_01.html">Product Detail 01</a> </li>
-                                <li> <a href="product-detail_02.html">Product Detail 02</a> </li>
-                                <li> <a href="shopping-cart.html">Shopping Cart</a> </li>
-                                <li> <a href="checkout.html">Checkout</a> </li>
-                                <li> <a href="about-us_01.html">About 01</a> </li>
-                                <li> <a href="about-us_02.html">About 02</a> </li>
-                                <li> <a href="contact.html">Contact</a> </li>
-                                <li> <a href="blog-list_01.html">Blog List 01</a> </li>
-                                <li> <a href="blog-list_02.html">Blog List 02</a> </li>
-                                <li> <a href="blog-list_03.html">Blog List 03 </a> </li>
-                                <li> <a href="blog-detail_01.html">Blog Detail 01 </a> </li>
-                            </ul>
-                        </li>
 
-                        @*Erkek*@
-                        <li class="dropdown @(ViewBag.MenuIndex == 3 ? "active" : "")">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Erkek</a>
-                            <ul class="dropdown-menu">
-                                <li> <a href="shop_01.html">Shop 01 </a> </li>
-                                <li> <a href="shop_02.html">Shop 02</a> </li>
-                                <li> <a href="shop_03.html">Shop 03 </a> </li>
-                                <li> <a href="shop_04.html">Shop 04 </a> </li>
-                                <li> <a href="product-detail_01.html">Product Detail 01</a> </li>
-                                <li> <a href="product-detail_02.html">Product Detail 02</a> </li>
-                                <li> <a href="shopping-cart.html">Shopping Cart</a> </li>
-                                <li> <a href="checkout.html">Checkout</a> </li>
-                                <li> <a href="about-us_01.html">About 01</a> </li>
-                                <li> <a href="about-us_02.html">About 02</a> </li>
-                                <li> <a href="contact.html">Contact</a> </li>
-                                <li> <a href="blog-list_01.html">Blog List 01</a> </li>
-                                <li> <a href="blog-list_02.html">Blog List 02</a> </li>
-                                <li> <a href="blog-list_03.html">Blog List 03 </a> </li>
-                                <li> <a href="blog-detail_01.html">Blog Detail 01 </a> </li>
-                            </ul>
-                        </li>
+                        @foreach (Category category in Model.Where(a => a.ParentID == null))
+                        {
+                            <li class="dropdown @(ViewBag.MenuIndex == 3 || ViewBag.MenuIndex == 4 ? "active" : "")">
+
+                                <a href="#." class="dropdown-toggle" data-toggle="dropdown">@category.CategoryName</a>
+
+                                @if (category.SubCategories.Any())
+                                {
+                                    <ul class="dropdown-menu">
+                                        @foreach (Category subCategory in category.SubCategories)
+                                        {
+                                            <li><a href="#">@subCategory.CategoryName</a></li>
+                                        }
+                                    </ul>
+                                }
+
+                            </li>
+                        }
 
                         <li class="@(ViewBag.MenuIndex == 1 ? "active" : "")"><a asp-controller="Home" asp-action="AboutUs">Hakkımızda </a></li>
 

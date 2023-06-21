@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Slide>
+
+
+<main class="page-content">
+
+    <h6 class="mb-0 text-center text-uppercase">Slayt Yönetimi</h6>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center gap-2 justify-content-end mb-3">
+                <button class="btn btn-sm btn-light px-2"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
+                <a asp-controller="Slide" asp-action="Create" class="btn btn-sm btn-primary px-2"><i class="bi bi-plus-lg me-2"></i>Yeni Ekle</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-xxl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-borderless mb-0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Slayt Başlığı</th>
+                                    <th scope="col">Slayt Açıklaması</th>
+                                    <th scope="col">Slayt Fiyatı</th>
+                                    <th scope="col">Slayt Fotoğrafı</th>
+                                    <th scope="col">Slayt Bağlantısı</th>
+                                    <th scope="col">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (Slide slide in Model)
+                                {
+                                    <tr class="text-center align-middle">
+                                        <th scope="row">@slide.ID</th>
+                                        <td>@slide.SlideTitle</td>
+                                        <td>@slide.SlideDescription</td>
+                                        <td>@slide.SlidePrice</td>
+                                        <td>@slide.SlidePicture</td>
+                                        <td>@slide.SlideLink</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a asp-controller="Slide" asp-action="Update" asp-route-id="@slide.ID" title="Slaytyı Güncelle" class="btn btn-warning">
+                                                    <span class="material-symbols-outlined me-0">refresh</span>
+                                                </a>
+                                                <a asp-controller="Slide" asp-action="Delete" asp-route-id="@slide.ID" title="Slaytyı Sil" class="btn btn-danger">
+                                                    <span class="material-symbols-outlined me-0">delete</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--end main content-->
+
