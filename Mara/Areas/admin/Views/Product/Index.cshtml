@@ -1,1 +1,66 @@
-﻿
+﻿@model IEnumerable<Product>
+
+
+<main class="page-content">
+
+    <h6 class="mb-0 text-center text-uppercase">Ürün Yönetimi</h6>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center gap-2 justify-content-end mb-3">
+                <button class="btn btn-sm btn-light px-2"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
+                <a asp-controller="Product" asp-action="Create" class="btn btn-sm btn-primary px-2"><i class="bi bi-plus-lg me-2"></i>Yeni Ekle</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-borderless mb-0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ürün Adı</th>
+                                    <th scope="col">Ürün Açıklaması</th>
+                                    <th scope="col">Ürün Detayı</th>
+                                    <th scope="col">Ürün Fiyatı</th>
+                                    <th scope="col">Stok Sayısı</th>
+                                    <th scope="col">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (Product product in Model)
+                                {
+                                    <tr class="text-center align-middle">
+                                        <th scope="row">@product.ID</th>
+                                        <td>@product.ProductName</td>
+                                        <td>@product.ProductDescription</td>
+                                        <td>@product.ProductDetail</td>
+                                        <td>@product.ProductPrice</td>
+                                        <td>@product.ProductStock</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a asp-controller="Product" asp-action="Update" asp-route-id="@product.ID" title="Ürünyı Güncelle" class="btn btn-warning">
+                                                    <span class="material-symbols-outlined me-0">refresh</span>
+                                                </a>
+                                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ID" title="Ürünyı Sil" class="btn btn-danger">
+                                                    <span class="material-symbols-outlined me-0">delete</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--end main content-->
+

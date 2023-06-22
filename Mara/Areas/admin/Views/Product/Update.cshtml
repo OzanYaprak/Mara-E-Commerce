@@ -1,0 +1,45 @@
+﻿@model Product
+
+<main class="page-content">
+    <h6 class="mb-0 text-center text-uppercase">Ürün Düzenle</h6>
+    <br />
+    <div class="container mt-5">
+        <div class="row justify-content-center text-center">
+            <div class="col-12">
+                <form asp-controller="Product" asp-action="Update" method="post">
+                    <input asp-for="@Model.ID" type="hidden" />
+                    <div class="mb-3">
+                        <label asp-for="ProductName" class="form-label fw-bold"></label>
+                        <input asp-for="ProductName" class="form-control">
+                        <span asp-validation-for="ProductName" class="text-danger fw-bold"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ProductDescription" class="form-label fw-bold"></label>
+                        <textarea asp-for="ProductDescription" class="form-control editor"></textarea>
+                        <span asp-validation-for="ProductDescription" class="text-danger fw-bold"></span>
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label asp-for="ProductDetail" class="form-label fw-bold"></label>
+                        <textarea asp-for="ProductDetail" class="form-control editor"></textarea>
+                        <span asp-validation-for="ProductDetail" class="text-danger fw-bold"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ProductPrice" class="form-label fw-bold"></label>
+                        <input asp-for="ProductPrice" class="form-control">
+                        <span asp-validation-for="ProductPrice" class="text-danger fw-bold"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ProductStock" class="form-label fw-bold"></label>
+                        <input asp-for="ProductStock" class="form-control">
+                        <span asp-validation-for="ProductStock" class="text-danger fw-bold"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-danger">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

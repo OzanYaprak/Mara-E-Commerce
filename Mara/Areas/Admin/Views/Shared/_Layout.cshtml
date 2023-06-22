@@ -683,5 +683,11 @@
     <script src="/admin/js/main.js"></script>
     <script src="/admin/js/jquery.validate.min.js"></script>
     <script src="/admin/js/jquery.validate.unobtrusive.js"></script>
+    <script src="/admin/ckeditor/ckeditor.js"></script>
+    <script>
+        $(".editor").each(function(){
+            CKEDITOR.replace($(this).attr("id"));
+        })
+    </script>
 </body>
 </html>
