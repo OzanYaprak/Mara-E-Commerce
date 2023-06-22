@@ -29,7 +29,7 @@ namespace DataAccessLayer.Entities
         [Display(Name = "Slayt Fiyat")]
         public decimal SlidePrice { get; set; }
 
-        [Required(ErrorMessage = "Slayt Fotoğrafı Girilmelidir")]
+        //[Required(ErrorMessage = "Slayt Fotoğrafı Girilmelidir")]
         [Column(TypeName = "nvarchar(150)"), StringLength(150, ErrorMessage = "Slayt Fotoğrafı {0} karakterden uzun olamaz.")]
         [Display(Name = "Slayt Fotoğrafı")]
         public string SlidePicture { get; set; }
